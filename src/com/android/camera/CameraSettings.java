@@ -51,6 +51,8 @@ public class CameraSettings {
     public static final String KEY_SHARPNESS = "pref_camera_sharpness_key";
     public static final String KEY_CONTRAST = "pref_camera_contrast_key";
     public static final String KEY_SATURATION = "pref_camera_saturation_key";
+    public static final String KEY_ISO = "pref_camera_iso_key";
+    public static final String KEY_LENSSHADING = "pref_camera_lensshading_key";
 
 
     public static final String QUICK_CAPTURE_ON = "on";
@@ -152,6 +154,8 @@ public class CameraSettings {
                 (ListPreference) group.findPreference(KEY_CONTRAST);
         ListPreference saturation =
                 (ListPreference) group.findPreference(KEY_SATURATION);
+        ListPreference mIso = group.findPreference(KEY_ISO);
+        ListPreference lensShade = group.findPreference(KEY_LENSSHADING);
 
         // Since the screen could be loaded from different resources, we need
         // to check if the preference is available here
@@ -199,7 +203,14 @@ public class CameraSettings {
             filterUnsupportedOptions(group,
                     videoFlashMode, mParameters.getSupportedFlashModes());
         }
-
+        if (mIso != null) {
+            filterUnsupportedOptions(group,
+                    mIso, mParameters.getSupportedIsoValues());
+        }
+        if (lensShade!= null) {
+            filterUnsupportedOptions(group,
+                    lensShade, mParameters.getSupportedLensShadeModes());
+        }
         if (exposure != null) {
             buildExposureCompensation(group, exposure);
         }
