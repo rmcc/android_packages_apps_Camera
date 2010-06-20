@@ -52,7 +52,9 @@ public class CameraHeadUpDisplay extends HeadUpDisplay {
                 CameraSettings.KEY_SATURATION,
                 CameraSettings.KEY_ANTIBANDING,
                 CameraSettings.KEY_ISO,
-                CameraSettings.KEY_LENSSHADING);
+                CameraSettings.KEY_LENSSHADING,
+                CameraSettings.KEY_AUTOEXPOSURE,
+                CameraSettings.KEY_ANTIBANDING);
 
         mOtherSettings = new OtherSettingsIndicator(context, prefs);
         mOtherSettings.setOnRestorePreferencesClickedRunner(new Runnable() {
