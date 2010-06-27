@@ -139,7 +139,7 @@ public class PopupWindow extends GLView {
 
         gl.glBlendFunc(GL11.GL_ONE, GL11.GL_ZERO);
         backup.draw(root, aXoffset, aYoffset, aWidth, aHeight, 1);
-        gl.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        gl.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
     }
 
     public void setContent(GLView content) {

@@ -174,7 +174,8 @@ public class GLRootView extends GLSurfaceView
 
     private void initialize() {
         mFlags |= FLAG_INITIALIZED;
-        setEGLConfigChooser(8, 8, 8, 8, 0, 4);
+        //setEGLConfigChooser(8, 8, 8, 8, 0, 4);
+        setEGLConfigChooser(false);
         getHolder().setFormat(PixelFormat.TRANSLUCENT);
         setZOrderOnTop(true);
 
@@ -441,7 +442,7 @@ public class GLRootView extends GLSurfaceView
         clearClip();
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_STENCIL_BUFFER_BIT);
         gl.glEnable(GL11.GL_BLEND);
-        gl.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_SRC_ALPHA);
+        gl.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
 
         mAnimationTime = SystemClock.uptimeMillis();
         if (mContentView != null) {
