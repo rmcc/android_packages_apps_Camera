@@ -42,7 +42,7 @@ public class Util {
     public static final int DIRECTION_UP = 2;
     public static final int DIRECTION_DOWN = 3;
 
-    public static final String REVIEW_ACTION = "com.cooliris.media.action.REVIEW";
+    public static final String REVIEW_ACTION = "org.cerqueira.hack.media.action.REVIEW";
 
     private Util() {
     }
