@@ -78,6 +78,10 @@ import com.android.camera.ui.GLRootView;
 import com.android.camera.ui.HeadUpDisplay;
 import com.android.camera.ui.ZoomController;
 
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -168,6 +172,13 @@ public class Camera extends NoSearchActivity implements View.OnClickListener,
     private static final int MAX_SHARPNESS_LEVEL = 5;
     private static final int MAX_CONTRAST_LEVEL = 5;
     private static final int MAX_SATURATION_LEVEL = 5;
+
+    private static final int MINIMUM_BRIGHTNESS = 0;
+    private static final int MAXIMUM_BRIGHTNESS = 6;
+    private int mbrightness = 3;
+    private int mbrightness_step = 1;
+    private ProgressBar brightnessProgressBar;
+    public static final String PREFS="CameraPrefs";
 
     // mCropValue and mSaveUri are used only if isImageCaptureIntent() is true.
     private String mCropValue;
@@ -678,6 +689,22 @@ public class Camera extends NoSearchActivity implements View.OnClickListener,
         }
     }
 
+    private OnSeekBarChangeListener mSeekListener = new OnSeekBarChangeListener() {
+        public void onStartTrackingTouch(SeekBar bar) {
+               // no support
+       }
+        public void onProgressChanged(SeekBar bar, int progress, boolean fromtouch) {
+               if (fromtouch) {
+                       mbrightness = progress;
+                       mParameters = mCameraDevice.getParameters();
+                       mParameters.set("luma-adaptation", String.valueOf(mbrightness));
+                       mCameraDevice.setParameters(mParameters);
+               }
+        }
+        public void onStopTrackingTouch(SeekBar bar) {
+        }
+    };
+
     private final class AutoFocusCallback
             implements android.hardware.Camera.AutoFocusCallback {
         public void onAutoFocus(
@@ -914,6 +941,8 @@ public class Camera extends NoSearchActivity implements View.OnClickListener,
         mSurfaceView = (SurfaceView) findViewById(R.id.camera_preview);
 
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		SharedPreferences ShPrefs = getSharedPreferences(PREFS, MODE_PRIVATE);
+		mbrightness = ShPrefs.getInt("pref_camera_brightness_key",mbrightness);
         CameraSettings.upgradePreferences(mPreferences);
 
         mQuickCapture = getQuickCaptureSettings();
@@ -971,6 +1000,14 @@ public class Camera extends NoSearchActivity implements View.OnClickListener,
             mSwitcher.setOnSwitchListener(this);
             mSwitcher.addTouchView(findViewById(R.id.camera_switch_set));
         }
+
+        brightnessProgressBar = (ProgressBar) findViewById(R.id.progress);
+        if (brightnessProgressBar instanceof SeekBar) {
+            SeekBar seeker = (SeekBar) brightnessProgressBar;
+            seeker.setOnSeekBarChangeListener(mSeekListener);
+        }
+        brightnessProgressBar.setMax(MAXIMUM_BRIGHTNESS);
+        brightnessProgressBar.setProgress(mbrightness);
 
         // Make sure preview is started.
         try {
@@ -1340,6 +1377,10 @@ public class Camera extends NoSearchActivity implements View.OnClickListener,
     @Override
     protected void onPause() {
         mPausing = true;
+        SharedPreferences ShPrefs = getSharedPreferences(PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = ShPrefs.edit();
+        editor.putInt("pref_camera_brightness_key", mbrightness);
+        editor.commit();
         stopPreview();
         // Close the camera now because other activities may need to use it.
         closeCamera();
@@ -1864,6 +1905,9 @@ public class Camera extends NoSearchActivity implements View.OnClickListener,
                             R.string.pref_camera_flashmode_no_flash);
                 }
             }
+
+            //Set Brightness.
+            mParameters.set("luma-adaptation", String.valueOf(mbrightness));
 
             // Set white balance parameter.
             String whiteBalance = mPreferences.getString(
