@@ -47,6 +47,11 @@ public class CameraSettings {
     public static final String KEY_SCENE_MODE = "pref_camera_scenemode_key";
     public static final String KEY_QUICK_CAPTURE = "pref_camera_quickcapture_key";
     public static final String KEY_EXPOSURE = "pref_camera_exposure_key";
+    public static final String KEY_ANTIBANDING = "pref_camera_antibanding_key";
+    public static final String KEY_SHARPNESS = "pref_camera_sharpness_key";
+    public static final String KEY_CONTRAST = "pref_camera_contrast_key";
+    public static final String KEY_SATURATION = "pref_camera_saturation_key";
+
 
     public static final String QUICK_CAPTURE_ON = "on";
     public static final String QUICK_CAPTURE_OFF = "off";
@@ -139,6 +144,14 @@ public class CameraSettings {
         ListPreference exposure = group.findPreference(KEY_EXPOSURE);
         ListPreference videoFlashMode =
                 group.findPreference(KEY_VIDEOCAMERA_FLASH_MODE);
+		ListPreference antiBanding =
+                (ListPreference) group.findPreference(KEY_ANTIBANDING);
+        ListPreference sharpness =
+                (ListPreference) group.findPreference(KEY_SHARPNESS);
+        ListPreference contrast =
+                (ListPreference) group.findPreference(KEY_CONTRAST);
+        ListPreference saturation =
+                (ListPreference) group.findPreference(KEY_SATURATION);
 
         // Since the screen could be loaded from different resources, we need
         // to check if the preference is available here
@@ -189,6 +202,22 @@ public class CameraSettings {
 
         if (exposure != null) {
             buildExposureCompensation(group, exposure);
+        }
+        if (antiBanding != null) {
+            filterUnsupportedOptions(group,
+                    antiBanding, mParameters.getSupportedAntibanding());
+        }
+        if (sharpness != null) {
+           if (mParameters.getMaxSharpness()  == 0)
+               removePreference(group, sharpness.getKey());
+        }
+        if (contrast != null) {
+           if (mParameters.getMaxContrast()  == 0)
+               removePreference(group, contrast.getKey());
+        }
+        if (saturation != null) {
+           if (mParameters.getMaxSaturation()  == 0)
+               removePreference(group, saturation.getKey());
         }
     }
 

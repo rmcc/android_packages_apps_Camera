@@ -165,6 +165,10 @@ public class Camera extends NoSearchActivity implements View.OnClickListener,
     private ImageView mLastPictureButton;
     private ThumbnailController mThumbController;
 
+    private static final int MAX_SHARPNESS_LEVEL = 5;
+    private static final int MAX_CONTRAST_LEVEL = 5;
+    private static final int MAX_SATURATION_LEVEL = 5;
+
     // mCropValue and mSaveUri are used only if isImageCaptureIntent() is true.
     private String mCropValue;
     private Uri mSaveUri;
@@ -1890,6 +1894,52 @@ public class Camera extends NoSearchActivity implements View.OnClickListener,
         } else {
             mFocusMode = mParameters.getFocusMode();
         }
+        // Set antibanding parameter.
+        String antiBanding = mPreferences.getString(
+                CameraSettings.KEY_ANTIBANDING,
+                getString(R.string.pref_camera_antibanding_default));
+        if (isSupported(antiBanding, mParameters.getSupportedAntibanding())) {
+            mParameters.setAntibanding(antiBanding);
+        }
+
+        // Set sharpness parameter.
+        if (mParameters.getMaxSharpness() > 0) {
+        String sharpnessStr = mPreferences.getString(
+                CameraSettings.KEY_SHARPNESS,
+                getString(R.string.pref_camera_sharpness_default));
+        int sharpness = Integer.parseInt(sharpnessStr) *
+                (mParameters.getMaxSharpness()/MAX_SHARPNESS_LEVEL);
+        if((0 <= sharpness) &&
+                (sharpness <= mParameters.getMaxSharpness()))
+            mParameters.setSharpness(sharpness);
+		}
+
+
+        // Set contrast parameter.
+        if (mParameters.getMaxContrast() > 0) {
+        String contrastStr = mPreferences.getString(
+                CameraSettings.KEY_CONTRAST,
+                getString(R.string.pref_camera_contrast_default));
+        int contrast = Integer.parseInt(contrastStr) *
+                (mParameters.getMaxContrast()/MAX_CONTRAST_LEVEL);
+        if((0 <= contrast) &&
+                (contrast <= mParameters.getMaxContrast()))
+            mParameters.setContrast(contrast);
+		}
+
+
+        // Set saturation parameter.
+        if (mParameters.getMaxSaturation() > 0) {
+        String saturationStr = mPreferences.getString(
+                CameraSettings.KEY_SATURATION,
+                getString(R.string.pref_camera_saturation_default));
+        int saturation = Integer.parseInt(saturationStr) *
+            (mParameters.getMaxSaturation()/MAX_SATURATION_LEVEL);
+        if((0 <= saturation) &&
+                (saturation <= mParameters.getMaxSaturation()))
+            mParameters.setSaturation(saturation);
+		}
+
     }
 
     // We separate the parameters into several subsets, so we can update only

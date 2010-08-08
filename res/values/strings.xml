@@ -206,6 +206,57 @@
     <string name="pref_camera_coloreffect_entry_bluetint">Blue tint</string>
     <string name="pref_camera_coloreffect_entry_greentint">Green tint</string>
 
+    <!-- Settings screen, antibanding dialog title -->
+    <string name="pref_camera_antibanding_dialogtitle">Anti-banding</string>
+
+    <!-- Default antibanding setting. -->
+    <string name="pref_camera_antibanding_default" translatable="false">auto</string>
+
+    <!-- Settings screen, Select antibanding title -->
+    <string name="pref_camera_antibanding_title">Anti-banding</string>
+
+    <!-- Settings screen, antibanding dialog radio button choices -->
+    <string name="pref_camera_antibanding_entry_off">Off</string>
+    <string name="pref_camera_antibanding_entry_50hz">50 Hz</string>
+    <string name="pref_camera_antibanding_entry_60hz">60 Hz</string>
+    <string name="pref_camera_antibanding_entry_auto">Auto</string>
+    <string name="pref_camera_antibanding_entry_max">Max</string>
+
+    <!-- Settings screen, Multiple levels entries -->
+    <string name="pref_camera_multilevel_entry_level0">Level 0</string>
+    <string name="pref_camera_multilevel_entry_level1">Level 1</string>
+    <string name="pref_camera_multilevel_entry_level2">Level 2</string>
+    <string name="pref_camera_multilevel_entry_level3">Level 3</string>
+    <string name="pref_camera_multilevel_entry_level4">Level 4</string>
+    <string name="pref_camera_multilevel_entry_level5">Level 5</string>
+
+    <!-- Default sharpness setting. Do not translate. -->
+    <string name="pref_camera_sharpness_default">2</string>
+
+    <!-- Settings screen, Select sharpness title -->
+    <string name="pref_camera_sharpness_title">Sharpness</string>
+
+    <!-- Settings screen, Sharpness dialog title -->
+    <string name="pref_camera_sharpness_dialogtitle">Sharpness</string>
+
+    <!-- Default contrast setting. Do not translate. -->
+    <string name="pref_camera_contrast_default">3</string>
+
+    <!-- Settings screen, Select contrast title -->
+    <string name="pref_camera_contrast_title">Contrast</string>
+
+    <!-- Settings screen, contrast dialog title -->
+    <string name="pref_camera_contrast_dialogtitle">Contrast</string>
+
+    <!-- Default saturation setting. Do not translate. -->
+    <string name="pref_camera_saturation_default">3</string>
+
+    <!-- Settings screen, Select saturation title -->
+    <string name="pref_camera_saturation_title">Saturation</string>
+
+    <!-- Settings screen, Saturation dialog title -->
+    <string name="pref_camera_saturation_dialogtitle">Saturation</string>
+
     <!-- Default scene mode setting. -->
     <string name="pref_camera_scenemode_default" translatable="false">auto</string>
 
