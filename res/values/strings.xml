@@ -209,19 +209,6 @@
     <!-- Settings screen, antibanding dialog title -->
     <string name="pref_camera_antibanding_dialogtitle">Anti-banding</string>
 
-    <!-- Default antibanding setting. -->
-    <string name="pref_camera_antibanding_default" translatable="false">auto</string>
-
-    <!-- Settings screen, Select antibanding title -->
-    <string name="pref_camera_antibanding_title">Anti-banding</string>
-
-    <!-- Settings screen, antibanding dialog radio button choices -->
-    <string name="pref_camera_antibanding_entry_off">Off</string>
-    <string name="pref_camera_antibanding_entry_50hz">50 Hz</string>
-    <string name="pref_camera_antibanding_entry_60hz">60 Hz</string>
-    <string name="pref_camera_antibanding_entry_auto">Auto</string>
-    <string name="pref_camera_antibanding_entry_max">Max</string>
-
     <!-- Settings screen, Multiple levels entries -->
     <string name="pref_camera_multilevel_entry_level0">Level 0</string>
     <string name="pref_camera_multilevel_entry_level1">Level 1</string>

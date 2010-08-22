@@ -50,7 +50,6 @@ public class CameraHeadUpDisplay extends HeadUpDisplay {
                 CameraSettings.KEY_SHARPNESS,
                 CameraSettings.KEY_CONTRAST,
                 CameraSettings.KEY_SATURATION,
-                CameraSettings.KEY_ANTIBANDING,
                 CameraSettings.KEY_ISO,
                 CameraSettings.KEY_LENSSHADING,
                 CameraSettings.KEY_AUTOEXPOSURE,

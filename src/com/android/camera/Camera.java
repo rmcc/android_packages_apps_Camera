@@ -2074,13 +2074,6 @@ public class Camera extends NoSearchActivity implements View.OnClickListener,
         } else {
             mFocusMode = mParameters.getFocusMode();
         }
-        // Set antibanding parameter.
-        String antiBanding = mPreferences.getString(
-                CameraSettings.KEY_ANTIBANDING,
-                getString(R.string.pref_camera_antibanding_default));
-        if (isSupported(antiBanding, mParameters.getSupportedAntibanding())) {
-            mParameters.setAntibanding(antiBanding);
-        }
 
         // Set sharpness parameter.
         if (mParameters.getMaxSharpness() > 0) {
