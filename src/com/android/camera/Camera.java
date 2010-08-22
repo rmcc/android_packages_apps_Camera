@@ -182,11 +182,6 @@ public class Camera extends NoSearchActivity implements View.OnClickListener,
     private static final int MAX_CONTRAST_LEVEL = 5;
     private static final int MAX_SATURATION_LEVEL = 5;
 
-    private static final int MINIMUM_BRIGHTNESS = 0;
-    private static final int MAXIMUM_BRIGHTNESS = 6;
-    private int mbrightness = 3;
-    private int mbrightness_step = 1;
-    private ProgressBar brightnessProgressBar;
     public static final String PREFS="CameraPrefs";
 
     // mCropValue and mSaveUri are used only if isImageCaptureIntent() is true.
@@ -714,15 +709,6 @@ public class Camera extends NoSearchActivity implements View.OnClickListener,
             decrementkeypress();
         }
         }
-     private OnSeekBarChangeListener mSeekListener = new OnSeekBarChangeListener() {
-        public void onStartTrackingTouch(SeekBar bar) {
-		// no support
-    }
-        public void onProgressChanged(SeekBar bar, int progress, boolean fromtouch) {
-        }
-        public void onStopTrackingTouch(SeekBar bar) {
-        }
-    };
 
     private OnSeekBarChangeListener mSeekListener = new OnSeekBarChangeListener() {
         public void onStartTrackingTouch(SeekBar bar) {
