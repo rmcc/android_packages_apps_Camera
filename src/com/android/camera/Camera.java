@@ -82,10 +82,6 @@ import com.android.camera.ui.GLRootView;
 import com.android.camera.ui.HeadUpDisplay;
 import com.android.camera.ui.ZoomController;
 
-import android.widget.ProgressBar;
-import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -1024,15 +1020,6 @@ public class Camera extends NoSearchActivity implements View.OnClickListener,
             mSwitcher.setOnSwitchListener(this);
             mSwitcher.addTouchView(findViewById(R.id.camera_switch_set));
         }
-        brightnessProgressBar = (ProgressBar) findViewById(R.id.progress);
-        if (brightnessProgressBar instanceof SeekBar) {
-            SeekBar seeker = (SeekBar) brightnessProgressBar;
-            seeker.setOnSeekBarChangeListener(mSeekListener);
-        }
-        brightnessProgressBar.setMax(MAXIMUM_BRIGHTNESS);
-        brightnessProgressBar.setProgress(mbrightness);
-
-
         brightnessProgressBar = (ProgressBar) findViewById(R.id.progress);
         if (brightnessProgressBar instanceof SeekBar) {
             SeekBar seeker = (SeekBar) brightnessProgressBar;
